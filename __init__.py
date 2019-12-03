@@ -80,6 +80,6 @@ for y in orders:
         item = ";".join(str(z) for z in y)
 
         print(item)
-        text_file.write(item)
+        text_file.write(item+"\n")
 
 text_file.close()

@@ -18,7 +18,8 @@ submit.click()
 
 text_file.write("Order ID;Product;Store;Value;Tracking ID;Carrier;Order time;Status\n")
 
-orders = list()
+orders = [["Order ID","Product(s)","Store","Value","Tracking ID","Carrier","Order Time","Status"]]
+
 ordersleft = True
 while ordersleft==True:
     sleep(6)
@@ -55,7 +56,7 @@ text_file.close()
 text_file = open("Logistics.txt", "w")
 
 for y in orders:
-    if y[7] == "Awaiting delivery" || y[7] == "Finished":
+    if y[7] == "Awaiting delivery" or y[7] == "Finished":
         driver.get("https://trade.aliexpress.com/order_detail.htm?orderId="+y[0])
         sleep(4)
         driver.switch_to.frame(0)

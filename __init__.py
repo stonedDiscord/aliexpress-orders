@@ -71,7 +71,7 @@ text_file = open("Logistics.txt", "w", encoding="utf-8")
 
 for y in orders:
     # only get orders that have been sent out, otherwise it will fail
-    if y[7] == "Awaiting delivery" or y[7] == "Finished":
+    if y[7] == "Awaiting delivery": # or y[7] == "Finished":
         sleep(4)
         text_file.flush()
         driver.get("https://trade.aliexpress.com/order_detail.htm?orderId="+y[0])

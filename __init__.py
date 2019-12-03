@@ -39,12 +39,9 @@ while ordersleft==True:
         print(item)
         text_file.write(item+"\n")
 
-        #print(thisorder)
         orders.append(thisorder)
-
     
     nextbutton = driver.find_element_by_class_name("ui-pagination-next")
-    print(nextbutton.get_attribute('class').split())
 
     if 'ui-pagination-disabled' in nextbutton.get_attribute('class').split():
         ordersleft = False

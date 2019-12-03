@@ -33,7 +33,8 @@ text_file.write("Order ID;Product;Store;Value;Tracking ID;Carrier;Order time;Sta
 orders = [["Order ID","Product(s)","Store","Value","Tracking ID","Carrier","Order Time","Status"]]
 
 ordersleft = True
-while ordersleft==True:
+page=1
+while ordersleft==True and page<=50:
     sleep(6)
     # wait for everything to load
     text_file.flush()
@@ -48,11 +49,11 @@ while ordersleft==True:
         x.find_element_by_css_selector(".order-status .f-left").text]
 
         item = ";".join(str(z) for z in thisorder)
+        if thisorder not in orders:
+            print(item)
+            text_file.write(item+"\n")
 
-        print(item)
-        text_file.write(item+"\n")
-
-        orders.append(thisorder)
+            orders.append(thisorder)
     
     nextbutton = driver.find_element_by_class_name("ui-pagination-next")
 
@@ -61,6 +62,7 @@ while ordersleft==True:
         ordersleft = False
     else:
         nextbutton.click()
+        page+1
     
 text_file.close()
 # open a new file for the complete list

@@ -57,8 +57,8 @@ for y in orders:
         driver.get("https://trade.aliexpress.com/order_detail.htm?orderId="+y[0])
         sleep(4)
         driver.switch_to.frame(0)
-        y[5] = driver.find_elements_by_class_name("logistics-name").text
-        y[4] = driver.find_elements_by_class_name("logistics-num").text
+        y[5] = driver.find_element_by_class_name("logistics-name").text
+        y[4] = driver.find_element_by_class_name("logistics-num").text
 
         item = ";".join(str(z) for z in y)
 

@@ -1,8 +1,7 @@
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from time import sleep
-import csv
-text_file = open("Output.txt", "w")
+text_file = open("Output.txt", "w", encoding="utf-8")
 driver = webdriver.Chrome("chromedriver.exe") 
 driver.get("https://login.aliexpress.com/?returnUrl=https%3A%2F%2Ftrade.aliexpress.com%2ForderList.htm")
 sleep(4)
@@ -50,15 +49,15 @@ while ordersleft==True:
     
 text_file.close()
 
-text_file = open("Logistics.txt", "w")
+text_file = open("Logistics.txt", "w", encoding="utf-8")
 
 for y in orders:
     if y[7] == "Awaiting delivery" or y[7] == "Finished":
+        sleep(4)
         driver.get("https://trade.aliexpress.com/order_detail.htm?orderId="+y[0])
         sleep(4)
-        driver.switch_to.frame(0)
-        y[5] = driver.find_element_by_class_name("logistics-name").text
-        y[4] = driver.find_element_by_class_name("logistics-num").text
+        y[5] = driver.find_element_by_css_selector(".logistics-name").text
+        y[4] = driver.find_element_by_css_selector(".logistics-num").text
 
         item = ";".join(str(z) for z in y)
 

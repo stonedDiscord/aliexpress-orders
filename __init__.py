@@ -62,7 +62,7 @@ while ordersleft==True and page<=50:
         ordersleft = False
     else:
         nextbutton.click()
-        page+1
+        page+=1
     
 text_file.close()
 # open a new file for the complete list
